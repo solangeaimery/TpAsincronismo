@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tp Asincronismo</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    
+    <header>
+        <nav class="bg-white h-16 flex justify-between items-center shadow-2xl">
+            <div>
+                <h1 class="m-4">AquiVaElLogogg</h1>
+            </div>
+            <div>
+                <a href="index.html" class="mx-5 font-bold hover:text-[#D60004]">Home</a>
+                <a href="index.html" class="mx-5 font-bold hover:text-[#D60004]">Create Job</a>
+            </div>
+        </nav>
+    </header>
+    <div class="bg-[#D60004] h-14 flex justify-between items-center">
+        <form>
+            <div class="flex">
+                <div class="">
+                    <label for="filter-type" class="font-bold"> Type </label>
+                    <select name="filer-type" id="filter-type" class="w-48 border-2">
+                        <!-- aqui va codigo js -->
+                    </select>
+                </div>
+                <div class="">
+                    <label for="filter-type" class="font-bold"> Type </label>
+                    <select name="filer-type" id="filter-type" class="w-48 border-2">
+                        <!-- aqui va codigo js -->
+                    </select>
+                </div>
+                <div class="">
+                    <label for="filter-type" class="font-bold"> Type </label>
+                    <select name="filer-type" id="filter-type" class="w-48 border-2">
+                        <!-- aqui va codigo js -->
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button>search</button>
+                <button>clear</button>
+            </div>
+        </form>
+    </div>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
