@@ -1,0 +1,22 @@
+body{
+    background-image:url(../assets/inspiracion.1.jpeg);
+    font-family: 'Oswald', sans-serif;
+    height: 2000px;
+}
+
+.box-banner{
+    position:unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #C90009;
+    font-weight: bold;
+    font-size: 40px;
+    background-image:url(../assets/tatuajitogg.jpeg);
+    background-repeat: no-repeat;
+    background-position: center ; 
+    height: 250px;
+    width: 100%;
+
+}
