@@ -15,24 +15,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body">
     <header>
-        <nav class="bg-white h-16 flex justify-between items-center shadow-2xl">
-            <div>
-                <h1 class="m-4">AquiVaElLogogg</h1>
+        <div id="header-container">
+            <nav
+                class="bg-[#EFECEB] h-17 flex justify-between items-center shadow-2xl opacity-75 fixed w-full z-10 top-0">
+                <div>
+                    <img class="mx-2 " src="assets/tatulogo2TP.png" alt="" id="img-logo">
+                </div>
+                <div>
+                    <a href="index.html"
+                        class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
+                    <a href="index.html"
+                        class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Agregar
+                        trabajo</a>
+                </div>
+            </nav>
+            <div class="box-banner">
+                <p>Te gustaria ser parte de nuestro Staff? <br> Te estamos buscando
+                </p>
             </div>
-            <div>
-                <a href="index.html"
-                    class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
-                <a href="index.html"
-                    class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Create Job</a>
-            </div>
-        </nav>
+        </div>
     </header>
-    <div class="box-banner">
-        <p>Hola soy un banner</p>
-    </div>
-    <section class="pt-2 bg-[#D60004] h-16">
+    <section class="pt-2 bg-[#D60004] h-16" id="form-section">
         <form>
             <div class="flex justify-evenly items-center">
                 <div class="flex">
@@ -68,7 +73,27 @@
             </div>
         </form>
     </section>
+    <section id="cards-section">
+        <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-[#D60004]">
+            <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains">
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                <p class="text-gray-700 text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et
+                    perferendis eaque, exercitationem praesentium nihil.
+                </p>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+                <span
+                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                <span
+                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                <span
+                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+            </div>
+        </div> -->
+    </section>
     <script src="js/script.js"></script>
-</body>
+    </body>
 
 </html>

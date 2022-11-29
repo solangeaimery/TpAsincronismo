@@ -1,22 +1,54 @@
 body{
-    background-image:url(../assets/inspiracion.1.jpeg);
     font-family: 'Oswald', sans-serif;
-    height: 2000px;
+}
+#header-container{
+    background-image:url(../assets/fondopagina.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position:bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+/* header{
+    background-image:url(../assets/panorama.jpeg);
+    background-repeat: no-repeat;
+    background-size:cover;
+} */
+nav{
+    position: sticky;
+    top: 0%;
+    z-index: 2;
 }
 
+#img-logo{
+    width: 90px;
+    height: 80px;
+}
 .box-banner{
-    position:unset;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #C90009;
     font-weight: bold;
-    font-size: 40px;
-    background-image:url(../assets/tatuajitogg.jpeg);
-    background-repeat: no-repeat;
-    background-position: center ; 
+    font-size: 50px;
     height: 250px;
     width: 100%;
+}
 
+@font-face {
+    font-family: pirateOne ;
+    src: url(../assets/fonts/PirataOne-Regular.ttf);
+}
+.box-banner p{
+    font-family: pirateOne;
+    padding-top: 150px;
+}
+
+#cards-section {
+    background-image:url(../assets/inspiracion.1.jpeg);
+    height: 1000px;    
 }
