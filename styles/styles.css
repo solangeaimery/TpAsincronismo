@@ -1,22 +1,75 @@
 body{
-    background-image:url(../assets/inspiracion.1.jpeg);
     font-family: 'Oswald', sans-serif;
-    height: 2000px;
+}
+#header-container{
+    z-index: 1;
+    background-image:url(../assets/fondopagina.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position:bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
+nav{
+    position: sticky;
+    top: 0%;
+    z-index: 2;
+}
+
+#img-logo{
+    width: 90px;
+    height: 80px;
+}
 .box-banner{
-    position:unset;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #C90009;
     font-weight: bold;
-    font-size: 40px;
-    background-image:url(../assets/tatuajitogg.jpeg);
-    background-repeat: no-repeat;
-    background-position: center ; 
+    font-size: 50px;
     height: 250px;
     width: 100%;
+}
 
+@font-face {
+    font-family: pirateOne ;
+    src: url(../assets/fonts/PirataOne-Regular.ttf);
+}
+.box-banner p{
+    z-index: 1;
+    font-family: pirateOne;
+    padding-top: 150px;
+}
+
+#cards-section {
+    z-index: 1;
+    background-image:url(../assets/inspiracion.1.jpeg);    
+}
+
+#card{
+    z-index: 1;
+    min-height:460px;
+    min-width: 250px;
+    padding: 5px;
+    margin: 10px;
+    width: 250px;
+    height: 460px;
+    background-color: #FFFFFF;
+    border: rgb(197, 9, 9) solid;
+    border-radius: 10px;
+    border-width: 5px;
+    font-size: 11px;
+    box-shadow: 0px 3px 37px 6px rgba(40,41,43,0.75);
+-webkit-box-shadow: 0px 3px 37px 6px rgba(40,41,43,0.75);
+-moz-box-shadow: 0px 3px 37px 6px rgba(40,41,43,0.75);
+}
+
+#card img{
+    height: 200px;
 }

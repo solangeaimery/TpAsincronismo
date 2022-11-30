@@ -15,24 +15,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="h-screen w-full min-h-fit max-w-full">
     <header>
-        <nav class="bg-white h-16 flex justify-between items-center shadow-2xl">
-            <div>
-                <h1 class="m-4">AquiVaElLogogg</h1>
+        <div id="header-container">
+            <nav class="bg-[#EFECEB] h-17 flex justify-between items-center shadow-2xl opacity-75 fixed w-full top-0">
+                <div>
+                    <img class="mx-2 " src="assets/tatulogo2TP.png" alt="" id="img-logo">
+                </div>
+                <div>
+                    <a href="index.html"
+                        class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
+                    <a href="index.html"
+                        class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Agregar
+                        trabajo</a>
+                </div>
+            </nav>
+            <div class="box-banner">
+                <p>Te gustaria ser parte de nuestro Staff? <br> Te estamos buscando
+                </p>
             </div>
-            <div>
-                <a href="index.html"
-                    class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
-                <a href="index.html"
-                    class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Create Job</a>
-            </div>
-        </nav>
+        </div>
     </header>
-    <div class="box-banner">
-        <p>Hola soy un banner</p>
-    </div>
-    <section class="pt-2 bg-[#D60004] h-16">
+    <section class="pt-2 bg-[#D60004] h-16" id="form-section">
         <form>
             <div class="flex justify-evenly items-center">
                 <div class="flex">
@@ -68,6 +72,60 @@
             </div>
         </form>
     </section>
+    <section id="cards-section" class="flex justify-around flex-wrap">
+        <!-- cards js -->
+    </section>
+
+    <!-- create job modal -->
+    <div class="bg-[rgba(0,0,0,0.2)] fixed w-full h-full overflow-auto z-10 flex justify-center items-center">
+        <div class="bg-white min-h-fit w-10/12 md:w-1/2 rounded-md m-5 p-8 shadow-md border-black border-y-8 ">
+            <h2 class="text-3xl text-stone-800 font-bold"> Agregar trabajo </h2>
+            <form>
+                <div class="flex flex-col">
+                    <label for="name-add-Job" class="font-bold mt-2"> Que estas buscando?</label>
+                    <input name="name-add-Job" id="name-add-Job" class="border-2" type="text" maxlength="50">
+                </div>
+                <span class="edit-modal-error hidden text-red-600 text-xs ">Oops! por favor ingresa que estas buscando
+                    para continuar</span>
+                <div class="flex flex-col">
+                    <label for="edit-amount" class="font-bold mt-2"> descripcion</label>
+                    <input name="edit-amount" id="edit-amount" class="border-2" type="text"
+                        placeholder="Put the amount in positive number">
+                </div>
+                <div class="flex flex-col">
+                    <label for="edit-amount" class="font-bold mt-2"> Inserte Url de imagen descriptiva</label>
+                    <input name="edit-amount" id="edit-amount" class="border-2" type="text"
+                        placeholder="Put the amount in positive number">
+                </div>
+                <div class="flex flex-col">
+                    <label for="edit-type" class="font-bold mt-2"> Experiencia buscada</label>
+                    <select name="edit-type" id="edit-type" class="border-2">
+                        <option value="income"> Sin experiencia</option>
+                        <option value="outcome">Con experiencia</option>
+                        <option value="outcome">5 años o mas</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="edit-type" class="font-bold mt-2"> Tipo </label>
+                    <select name="edit-type" id="edit-type" class="border-2">
+                        <option value="income"> Full-time </option>
+                        <option value="outcome"> Part-time </option>
+                        <option value="outcome"> A convenir </option>
+                    </select>
+                </div>
+            </form>
+            <div class="mt-5 flex justify-end">
+                <button
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    Guardar
+                </button>
+                <button
+                    class="bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 
