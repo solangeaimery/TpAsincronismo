@@ -17,7 +17,7 @@
 
 <body class="h-screen w-full min-h-fit max-w-full">
     <!-- create job modal -->
-    <div class="hidden bg-[rgba(0,0,0,0.2)] fixed w-full h-full overflow-auto z-10 flex justify-center items-center">
+    <div id="add-job-modal" class="hidden bg-[rgba(0,0,0,0.2)] fixed w-full h-full overflow-auto z-10 flex justify-center items-center">
         <div class="bg-white min-h-fit w-10/12 md:w-1/2 rounded-md m-5 p-8 shadow-md border-black border-y-8 ">
             <h2 class="text-3xl text-stone-800 font-bold"> Agregar trabajo </h2>
             <form>
@@ -54,10 +54,12 @@
             </form>
             <div class="mt-5 flex justify-end">
                 <button
+                    id="save-modal-btn"
                     class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                     Guardar
                 </button>
                 <button
+                    id="cancel-modal-btn"
                     class="bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow">
                     Cancelar
                 </button>
@@ -73,7 +75,7 @@
                 <div>
                     <a href="index.html"
                         class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
-                    <a href="index.html"
+                    <a id="add-job" href="#"
                         class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Agregar
                         trabajo</a>
                 </div>
@@ -122,6 +124,9 @@
     </section>
     <section id="cards-section" class="flex justify-around flex-wrap">
         <!-- cards js -->
+    </section>
+    <section class="flex justify-center items-center h-screen w-full min-h-fit max-w-full" id="card-detail-section">
+
     </section>
 
     
