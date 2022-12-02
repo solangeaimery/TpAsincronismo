@@ -13,6 +13,8 @@ const formSection = $("#form-section")
 const boxBanner = $(".box-banner")
 
 
+
+//**************fetchs*************//
 const getJobs = () => {
     fetch(endPoint)
         .then(res => res.json())
@@ -33,7 +35,7 @@ const getJob = (id) => {
         })
 }
 
-
+//***********************DOM************************//
 const generateCards = (jobs) => {
     for (const { id, name, descripcion, imagen, experiencia } of jobs) {
         cardSection.innerHTML += `
@@ -86,17 +88,32 @@ const generateDetailCard = (data) => {
         </div>
         <div class="flex justify-end items-end m-2">
             <button
-                class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-id="${id}">
+                class="btn-edit-job bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-id="${id}">
                 Editar trabajo
             </button>
             <button
-                class="bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow" data-id="${id}">
+                class="btn-delete-job bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow" data-id="${id}">
                 Eliminar trabajo
             </button>
         </div>
     </div>
 
         `
+    for (const btn of $$(".btn-delete-job")) {
+        btn.addEventListener("click", () => {
+            const jobId = btn.getAttribute("data-id")
+            $("#delete-job-modal").setAttribute("data-id", jobId)
+            $("#delete-job-modal").classList.remove("hidden")
+        })
+    }
+}
+
+//******************Functionality*******************//
+
+const deleteJob = (id) => {
+    fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/${id}`, {
+        method: "DELETE"
+    }).finally(() => window.location.href = "index.html")
 }
 
 //funcionalidad y eventos de modal
@@ -116,4 +133,6 @@ addJob.addEventListener("click", (e) => {
 cancelModalBtn.addEventListener("click", () => {
     addJobModal.classList.add("hidden")
 })
+
+
 
