@@ -37,6 +37,7 @@ const getJob = (id) => {
 
 //***********************DOM************************//
 const generateCards = (jobs) => {
+    $("#card-detail-section").classList.add("hidden")
     for (const { id, name, descripcion, imagen, experiencia } of jobs) {
         cardSection.innerHTML += `
         <div id="card">
@@ -72,6 +73,7 @@ const generateCards = (jobs) => {
 }
 
 const generateDetailCard = (data) => {
+    $("#card-detail-section").classList.remove("hidden")
     const { id, name, imagen, descripcion, experiencia } = data
     cardDetailSection.innerHTML += `
         <div id="card-details">
@@ -134,5 +136,10 @@ cancelModalBtn.addEventListener("click", () => {
     addJobModal.classList.add("hidden")
 })
 
+$("#btn-delete-job-modal").addEventListener("click", () => {
+    const jobId = $("#delete-job-modal").getAttribute("data-id")
+    deleteJob(jobId)
+    $("#delete-job-modal").classList.add("hidden")
 
+})
 
