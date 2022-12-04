@@ -35,6 +35,22 @@ const getJob = (id) => {
         })
 }
 
+const deleteJob = (id) => {
+    fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/${id}`, {
+        method: "DELETE"
+    }).finally(() => window.location.href = "index.html")
+}
+
+const editJob = (id) => {
+    fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/${id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(saveJob())
+    }).finally(() => window.location.href = "index.html")
+}
+
 //***********************DOM************************//
 const generateCards = (jobs) => {
     $("#card-detail-section").classList.add("hidden")
@@ -61,6 +77,7 @@ const generateCards = (jobs) => {
     </div>
         `
     }
+
     for (const btn of $$(".btn-detail")) {
         btn.addEventListener("click", () => {
             const jobId = btn.getAttribute("data-id")
@@ -74,9 +91,9 @@ const generateCards = (jobs) => {
 
 const generateDetailCard = (data) => {
     $("#card-detail-section").classList.remove("hidden")
-    const { id, name, imagen, descripcion, experiencia } = data
+    const { id, name, imagen, descripcion, experiencia , tipo} = data
     cardDetailSection.innerHTML += `
-        <div id="card-details">
+        <div id="card-details" class="shadow-md h-4/5 mt-9">
         <div class="flex justify-center">
             <img src="${imagen}" alt="${name}">
         </div>
@@ -88,7 +105,7 @@ const generateDetailCard = (data) => {
             <span
                 class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">${experiencia}</span>
         </div>
-        <div class="flex justify-end items-end m-2">
+        <div id="btn-container-detail" class="flex justify-end items-end m-2">
             <button
                 class="btn-edit-job bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-id="${id}">
                 Editar trabajo
@@ -101,6 +118,15 @@ const generateDetailCard = (data) => {
     </div>
 
         `
+$("#name-edit-Job").value = name
+$("#edit-description").value = descripcion
+$("#edit-imagen").value = imagen
+$("#experiencia-edit").value = experiencia[0]
+$("#tipe-edit").value = tipo
+
+$("#save-edit-job-btn").setAttribute("data-id", id)
+
+
     for (const btn of $$(".btn-delete-job")) {
         btn.addEventListener("click", () => {
             const jobId = btn.getAttribute("data-id")
@@ -108,15 +134,29 @@ const generateDetailCard = (data) => {
             $("#delete-job-modal").classList.remove("hidden")
         })
     }
+
+    for(const btn of $$(".btn-edit-job")) {
+        btn.addEventListener("click", () => {
+            $("#edit-job-form").classList.remove("hidden")
+            const jobId = btn.getAttribute("data-id")
+            $("#edit-job-form").setAttribute("data-id", jobId)
+            $("#btn-container-detail").classList.add("hidden")
+            
+        })
+    }
+}
+
+const saveJob = () => {
+    return {
+        name: $("#name-edit-Job").value,
+        descripcion: $("#edit-description").value,
+        imagen: $("#edit-imagen").value,
+        experiencia: $("#experiencia-edit").value ,
+        tipo: $("#tipe-edit").value,
+    }
 }
 
 //******************Functionality*******************//
-
-const deleteJob = (id) => {
-    fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/${id}`, {
-        method: "DELETE"
-    }).finally(() => window.location.href = "index.html")
-}
 
 //funcionalidad y eventos de modal
 
@@ -142,4 +182,19 @@ $("#btn-delete-job-modal").addEventListener("click", () => {
     $("#delete-job-modal").classList.add("hidden")
 
 })
+
+$("#btn-cancel-job-modal").addEventListener("click", () => {
+    $("#delete-job-modal").classList.add("hidden")
+})
+
+$("#save-edit-job-btn").addEventListener("click", () => {
+    const jobId = $("#save-edit-job-btn").getAttribute("data-id")
+    console.log(jobId)
+    editJob(jobId)
+})
+
+$("#cancel-edit-btn").addEventListener("click", () => {
+    $("#card-detail-section").classList.add("hidden")
+})
+
 
