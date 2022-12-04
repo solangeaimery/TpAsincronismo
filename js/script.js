@@ -26,6 +26,7 @@ const getJobs = () => {
 getJobs()
 
 
+
 const getJob = (id) => {
     fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/${id}`)
         .then(res => res.json())
@@ -48,6 +49,16 @@ const editJob = (id) => {
             'Content-Type': 'Application/json'
         },
         body: JSON.stringify(saveJob())
+    }).finally(() => window.location.href = "index.html")
+}
+
+const AddNewJob = () => {
+    fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(saveNewJob())
     }).finally(() => window.location.href = "index.html")
 }
 
@@ -91,19 +102,26 @@ const generateCards = (jobs) => {
 
 const generateDetailCard = (data) => {
     $("#card-detail-section").classList.remove("hidden")
-    const { id, name, imagen, descripcion, experiencia , tipo} = data
+    const { id, name, imagen, descripcion, experiencia, tipo, locacion } = data
     cardDetailSection.innerHTML += `
-        <div id="card-details" class="shadow-md h-4/5 mt-9">
+        <div id="card-details" class="shadow-md h-fit mt-9">
         <div class="flex justify-center">
             <img src="${imagen}" alt="${name}">
         </div>
         <div>
-            <h3 class="text-lg m-2">${name}</h3>
+            <h3 class="text-xl m-2">${name}</h3>
             <p class="m-1">${descripcion}</p>
         </div>
         <div class="m-2">
             <span
                 class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">${experiencia}</span>
+        </div>
+        <div class="m-2">
+                <span
+                class="inline-block px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">
+                <i class="fa-solid fa-location-dot inline-block px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2"></i>
+                ${locacion}
+                </span>
         </div>
         <div id="btn-container-detail" class="flex justify-end items-end m-2">
             <button
@@ -118,13 +136,13 @@ const generateDetailCard = (data) => {
     </div>
 
         `
-$("#name-edit-Job").value = name
-$("#edit-description").value = descripcion
-$("#edit-imagen").value = imagen
-$("#experiencia-edit").value = experiencia[0]
-$("#tipe-edit").value = tipo
+    $("#name-edit-Job").value = name
+    $("#edit-description").value = descripcion
+    $("#edit-imagen").value = imagen
+    $("#experiencia-edit").value = experiencia
+    $("#tipe-edit").value = tipo
 
-$("#save-edit-job-btn").setAttribute("data-id", id)
+    $("#save-edit-job-btn").setAttribute("data-id", id)
 
 
     for (const btn of $$(".btn-delete-job")) {
@@ -135,13 +153,13 @@ $("#save-edit-job-btn").setAttribute("data-id", id)
         })
     }
 
-    for(const btn of $$(".btn-edit-job")) {
+    for (const btn of $$(".btn-edit-job")) {
         btn.addEventListener("click", () => {
             $("#edit-job-form").classList.remove("hidden")
             const jobId = btn.getAttribute("data-id")
             $("#edit-job-form").setAttribute("data-id", jobId)
             $("#btn-container-detail").classList.add("hidden")
-            
+
         })
     }
 }
@@ -151,10 +169,21 @@ const saveJob = () => {
         name: $("#name-edit-Job").value,
         descripcion: $("#edit-description").value,
         imagen: $("#edit-imagen").value,
-        experiencia: $("#experiencia-edit").value ,
+        experiencia: $("#experiencia-edit").value,
         tipo: $("#tipe-edit").value,
     }
 }
+
+const saveNewJob = () => {
+    return {
+        name: $("#name-add-Job").value,
+        descripcion: $("#add-job-descripcion").value,
+        imagen: $("#modal-imagen").value,
+        experiencia: $("#experiencia-modal").value,
+        tipo: $("#tipo-modal").value,
+    }
+}
+
 
 //******************Functionality*******************//
 
@@ -187,14 +216,25 @@ $("#btn-cancel-job-modal").addEventListener("click", () => {
     $("#delete-job-modal").classList.add("hidden")
 })
 
-$("#save-edit-job-btn").addEventListener("click", () => {
-    const jobId = $("#save-edit-job-btn").getAttribute("data-id")
-    console.log(jobId)
-    editJob(jobId)
+const editJobEvent = () => {
+    console.log("holu")
+}
+
+$("#edit-form").addEventListener("submit", (e) => {
+    e.preventDefault()
+    console.log("holu")
 })
 
-$("#cancel-edit-btn").addEventListener("click", () => {
-    $("#card-detail-section").classList.add("hidden")
-})
+//no logro que me funcionen con eventos de tipo click ni con submit en el form. raaro.
+const editFormSave = () => {
+    const jobId = $("#save-edit-job-btn").getAttribute("data-id")
+    editJob(jobId)
+}
+
+const editFormCancel = () => {
+    $("#edit-job-form").classList.add("hidden")
+    $("#btn-container-detail").classList.remove("hidden")
+}
+
 
 

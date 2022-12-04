@@ -12,6 +12,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Dancing+Script:wght@700&family=Jost:ital,wght@0,600;1,800&family=Oleo+Script+Swash+Caps&family=Oswald&family=Quantico:ital@1&family=Rajdhani:wght@300&family=Secular+One&family=Signika:wght@300;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -31,7 +34,8 @@
                     para continuar</span>
                 <div class="flex flex-col">
                     <label for="modal-descripcion" class="font-bold mt-2"> descripcion</label>
-                    <textarea name="descripvion" id="" cols="20" rows="2" class="border-2" ></textarea>
+                    <textarea name="add-job-descripcion" id="add-job-descripcion" cols="20" rows="2"
+                        class="border-2"></textarea>
                 </div>
                 <div class="flex flex-col">
                     <label for="modal-imagen" class="font-bold mt-2"> Inserte Url de imagen descriptiva</label>
@@ -98,32 +102,45 @@
                         trabajo</a>
                 </div>
             </nav>
-            <div class="box-banner">
+            <div class=" md: box-banner">
                 <p>Queres tabajar en el mundo del tatuaje? <br> Tenemos muchas propuestas para vos
                 </p>
             </div>
         </div>
     </header>
-    <section class="pt-2 bg-[#D60004] h-16" id="form-section">
+    <section class="pt-2 bg-[#D60004] h-fit p-2" id="form-section">
         <form>
-            <div class="flex justify-evenly items-center">
-                <div class="flex">
+            <div class="flex flex-col md:flex-row justify-evenly items-center">
+                <div class="flex flex-col md:flex-row">
                     <div class="">
-                        <label for="filter-type" class="font-bold"> Type </label>
+                        <label for="filter-type" class="font-bold"> Localidad </label>
                         <select name="filer-type" id="filter-type" class="w-48 rounded mx-2">
-                            <!-- aqui va codigo js -->
+                            <option value="All">Localidad</option>
+                            <option value="Ramos mejia">Ramos mejia</option>
+                            <option value="Liniers">Liniers</option>
+                            <option value="Belgrano\">Belgrano</option>
+                            <option value="Villa urquiza">Villa uquiza</option>
+                            <option value="Palermo">Palermo</option>
+                            <option value="Remoto">Remoto</option>
+                            <option value="Devoto">Devoto</option>
                         </select>
                     </div>
                     <div class="">
-                        <label for="filter-type" class="font-bold"> Type </label>
+                        <label for="filter-type" class="font-bold"> Experiencia</label>
                         <select name="filer-type" id="filter-type" class="w-48 rounded mx-2">
-                            <!-- aqui va codigo js -->
+                            <option value="lAll">Locacion</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Full time">Full time</option>
+                            <option value="A convenir">A convenir</option>
                         </select>
                     </div>
                     <div class="">
-                        <label for="filter-type" class="font-bold"> Type </label>
+                        <label for="filter-type" class="font-bold"> Tipo </label>
                         <select name="filer-type" id="filter-type" class="w-48 rounded mx-2">
-                            <!-- aqui va codigo js -->
+                            <option value="All">Experiencia</option>
+                            <option value="0">Sin experiencia</option>
+                            <option value="2">Con experiencia</option>
+                            <option value="5">5 años o mas</option>
                         </select>
                     </div>
                 </div>
@@ -143,9 +160,10 @@
     <section id="cards-section" class="flex justify-around flex-wrap">
         <!-- cards js -->
     </section>
-    <section id="card-detail-section" class="hidden flex justify-center items-center h-screen w-full min-h-fit max-w-full pt-5">
-        <!-- cards js -->
-        <div id="edit-job-form" class="hidden h-4/5 mt-9 bg-white w-10/12 md:w-1/2 rounded-md m-5 p-8">
+    <section id="card-detail-section"
+        class="hidden flex justify-center items-center h-screen w-full min-h-fit max-w-full pt-5">
+        <!-- card js -->
+        <div id="edit-job-form" class="hidden h-fit mt-9 bg-white w-10/12 md:w-1/2 rounded-md m-5 p-8">
             <h2 class="text-3xl text-stone-800 font-bold"> Editar trabajo </h2>
             <form id="edit-form">
                 <div class="flex flex-col">
@@ -156,7 +174,8 @@
                     para continuar</span>
                 <div class="flex flex-col">
                     <label for="edit-description" class="font-bold mt-2"> descripcion</label>
-                    <textarea name="edit-description" id="edit-description" cols="20" rows="2" class="border-2" ></textarea>
+                    <textarea name="edit-description" id="edit-description" cols="20" rows="2"
+                        class="border-2"></textarea>
                 </div>
                 <div class="flex flex-col">
                     <label for="edit-imagen" class="font-bold mt-2"> Inserte Url de imagen descriptiva</label>
@@ -180,11 +199,11 @@
                 </div>
             </form>
             <div class="mt-5 flex justify-end">
-                <button id="save-edit-job-btn"
+                <button id="save-edit-job-btn" onclick="editFormSave()"
                     class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                     Guardar
                 </button>
-                <button id="cancel-edit-btn"
+                <button id="cancel-edit-btn" onclick="editFormCancel()"
                     class="bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow">
                     Cancelar
                 </button>
