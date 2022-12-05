@@ -11,8 +11,7 @@ const headerContainer = $("#header-container")
 const btnDetail = $$(".btn-detail")
 const formSection = $("#form-section")
 const boxBanner = $(".box-banner")
-
-
+let ArrDataJobs = ""
 
 //**************fetchs*************//
 const getJobs = () => {
@@ -20,6 +19,7 @@ const getJobs = () => {
         .then(res => res.json())
         .then(data => {
             generateCards(data)
+            ArrDataJobs = data
         })
 }
 
@@ -32,7 +32,6 @@ const getJob = (id) => {
         .then(res => res.json())
         .then(data => {
             generateDetailCard(data)
-
         })
 }
 
@@ -61,6 +60,7 @@ const AddNewJob = () => {
         body: JSON.stringify(saveNewJob())
     }).finally(() => window.location.href = "index.html")
 }
+
 
 //***********************DOM************************//
 const generateCards = (jobs) => {
@@ -119,7 +119,7 @@ const generateDetailCard = (data) => {
         <div class="m-2">
                 <span
                 class="inline-block px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">
-                <i class="fa-solid fa-location-dot inline-block px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2"></i>
+                <i class="fa-solid fa-location-dot inline-block px-3 py-1 text-lg font-semibold text-gray-700 mr-2 mb-2"></i>
                 ${locacion}
                 </span>
         </div>
@@ -186,6 +186,20 @@ const saveNewJob = () => {
 
 
 //******************Functionality*******************//
+
+//******filters*******//
+
+
+
+const filterBy = (filter, property) => {
+    const newArrFilter = ArrDataJobs.filter(job => {
+        if (filter === job[property]){
+            return job
+        }
+    })
+    return newArrFilter
+}
+
 
 //funcionalidad y eventos de modal
 
