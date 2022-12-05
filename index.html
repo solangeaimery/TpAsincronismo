@@ -19,7 +19,6 @@
 </head>
 
 <body class="h-screen w-full min-h-fit max-w-full">
-
     <!-- create job modal -->
     <div id="add-job-modal"
         class="hidden bg-[rgba(0,0,0,0.2)] fixed w-full h-full overflow-auto z-10 flex justify-center items-center">
@@ -102,7 +101,7 @@
                         trabajo</a>
                 </div>
             </nav>
-            <div class=" md: box-banner">
+            <div class="text-4xl md:text-6xl box-banner">
                 <p>Queres tabajar en el mundo del tatuaje? <br> Tenemos muchas propuestas para vos
                 </p>
             </div>
@@ -112,8 +111,8 @@
         <form>
             <div class="flex flex-col md:flex-row justify-evenly items-center">
                 <div class="flex flex-col md:flex-row">
-                    <div class="">
-                        <label for="filter-type" class="font-bold"> Localidad </label>
+                    <div class="flex justify-center flex-col md:justify-center flex-row ">
+                        <label for="filter-type" class="font-bold text-center"> Localidad </label>
                         <select name="filer-type" id="filter-type" class="w-48 rounded mx-2">
                             <option value="All">Localidad</option>
                             <option value="Ramos mejia">Ramos mejia</option>
@@ -125,17 +124,17 @@
                             <option value="Devoto">Devoto</option>
                         </select>
                     </div>
-                    <div class="">
-                        <label for="filter-type" class="font-bold"> Experiencia</label>
+                    <div class="flex justify-center flex-col md:justify-center flex-row">
+                        <label for="filter-type" class="font-bold text-center"> Experiencia</label>
                         <select name="filer-type" id="filter-type" class="w-48 rounded mx-2">
-                            <option value="lAll">Locacion</option>
+                            <option value="All">Tipo</option>
                             <option value="Part-time">Part-time</option>
                             <option value="Full time">Full time</option>
                             <option value="A convenir">A convenir</option>
                         </select>
                     </div>
-                    <div class="">
-                        <label for="filter-type" class="font-bold"> Tipo </label>
+                    <div class="flex justify-center flex-col md:justify-center flex-row">
+                        <label for="filter-type" class="font-bold text-center"> Tipo </label>
                         <select name="filer-type" id="filter-type" class="w-48 rounded mx-2">
                             <option value="All">Experiencia</option>
                             <option value="0">Sin experiencia</option>
@@ -157,8 +156,15 @@
             </div>
         </form>
     </section>
-    <section id="cards-section" class="flex justify-around flex-wrap">
-        <!-- cards js -->
+    <section id="cards-section-container" class="h-fit">
+        <div class="hidden spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+        <div id="cards-section" class="flex justify-around flex-wrap pt-10">
+            <!-- cards js -->
+        </div>
     </section>
     <section id="card-detail-section"
         class="hidden flex justify-center items-center h-screen w-full min-h-fit max-w-full pt-5">
