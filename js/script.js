@@ -1,37 +1,40 @@
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 
+const hideElement = (selector) => selector.classList.add("hidden")
+const unhideElement = (selector) => selector.classList.remove("hidden")
 
 // variables
-
-const endPoint = "https://63855351875ca3273d3a9730.mockapi.io/Jobs/"
 const cardSection = $("#cards-section")
-const cardDetailSection = $("#card-detail-section")
-const headerContainer = $("#header-container")
-const btnDetail = $$(".btn-detail")
 const formSection = $("#form-section")
 const boxBanner = $(".box-banner")
-let ArrDataJobs = ""
+let arrDataJobs = []
 
 //**************fetchs*************//
-const getJobs = () => {
-    fetch(endPoint)
+const getJobs = (isSearch) => {
+    unhideElement($(".spinner"))
+    fetch("https://63855351875ca3273d3a9730.mockapi.io/Jobs/")
         .then(res => res.json())
         .then(data => {
-            generateCards(data)
-            ArrDataJobs = data
+            setTimeout(() => {
+                if (isSearch) {
+                    generateCards(data)
+                }
+                arrDataJobs = data
+            }, 2000)
         })
 }
 
-getJobs()
-
-
+getJobs(true)
 
 const getJob = (id) => {
+    unhideElement($(".spinner"))
     fetch(`https://63855351875ca3273d3a9730.mockapi.io/Jobs/${id}`)
         .then(res => res.json())
         .then(data => {
-            generateDetailCard(data)
+            setTimeout(() => {
+                generateDetailCard(data)
+            },2000)
         })
 }
 
@@ -64,7 +67,10 @@ const AddNewJob = () => {
 
 //***********************DOM************************//
 const generateCards = (jobs) => {
-    $("#card-detail-section").classList.add("hidden")
+    cardSection.innerHTML = ""
+    hideElement($("#card-detail-section"))
+    hideElement($(".spinner"))
+
     for (const { id, name, descripcion, imagen, experiencia } of jobs) {
         cardSection.innerHTML += `
         <div id="card">
@@ -91,19 +97,21 @@ const generateCards = (jobs) => {
 
     for (const btn of $$(".btn-detail")) {
         btn.addEventListener("click", () => {
+            unhideElement($("#card-detail-section"))
             const jobId = btn.getAttribute("data-id")
             getJob(jobId)
-            formSection.classList.add("hidden")
-            cardSection.classList.add("hidden")
-            boxBanner.classList.add("hidden")
+            hideElement(formSection)
+            hideElement(cardSection)
+            hideElement(boxBanner)
         })
     }
 }
 
+
 const generateDetailCard = (data) => {
-    $("#card-detail-section").classList.remove("hidden")
+    hideElement($(".spinner"))
     const { id, name, imagen, descripcion, experiencia, tipo, locacion } = data
-    cardDetailSection.innerHTML += `
+    $("#card-detail-section").innerHTML += `
         <div id="card-details" class="shadow-md h-fit mt-9">
         <div class="flex justify-center">
             <img src="${imagen}" alt="${name}">
@@ -149,29 +157,29 @@ const generateDetailCard = (data) => {
         btn.addEventListener("click", () => {
             const jobId = btn.getAttribute("data-id")
             $("#delete-job-modal").setAttribute("data-id", jobId)
-            $("#delete-job-modal").classList.remove("hidden")
+            unhideElement($("#delete-job-modal"))
         })
     }
 
     for (const btn of $$(".btn-edit-job")) {
         btn.addEventListener("click", () => {
-            $("#edit-job-form").classList.remove("hidden")
+            unhideElement($("#edit-job-form"))
             const jobId = btn.getAttribute("data-id")
             $("#edit-job-form").setAttribute("data-id", jobId)
-            $("#btn-container-detail").classList.add("hidden")
+            hideElement($("#btn-container-detail"))
 
         })
     }
 }
 
 const saveJob = () => {
-    return {
-        name: $("#name-edit-Job").value,
-        descripcion: $("#edit-description").value,
-        imagen: $("#edit-imagen").value,
-        experiencia: $("#experiencia-edit").value,
-        tipo: $("#tipe-edit").value,
-    }
+        return {
+            name: $("#name-edit-Job").value,
+            descripcion: $("#edit-description").value,
+            imagen: $("#edit-imagen").value,
+            experiencia: $("#experiencia-edit").value,
+            tipo: $("#tipe-edit").value,
+        }
 }
 
 const saveNewJob = () => {
@@ -189,66 +197,127 @@ const saveNewJob = () => {
 
 //******filters*******//
 
-
-
 const filterBy = (filter, property) => {
-    const newArrFilter = ArrDataJobs.filter(job => {
-        if (filter === job[property]){
+    const newArrFilter = arrDataJobs.filter(job => {
+        if (filter === job[property]) {
             return job
         }
     })
-    return newArrFilter
+    return arrDataJobs = newArrFilter
 }
 
+// const locationInput = $("#filter-location").value
+// const experienceInput = $("#filter-experience").value
+// const typeInput = $("#filter-type").value // NO ANDA CON ESTAS VARIABLES :c ver... 
+
+const inputsValueAll = () => {
+    for (const input of $$(".input-value-all")) {
+        if (input.value === "All") {
+            arrDataJobs = arrDataJobs
+        }
+    }
+}
+
+const filterCards = () => {
+    getJobs(false)
+    inputsValueAll()
+    if ($("#filter-location").value === "Ramos mejia") {
+        filterBy("Ramos mejia", "locacion")
+    }
+    if ($("#filter-location").value === "Liniers") {
+        filterBy("Liniers", "locacion")
+    }
+    if ($("#filter-location").value === "Belgrano") {
+        filterBy("Belgrano", "locacion")
+    }
+    if ($("#filter-location").value === "Villa Urquiza") {
+        filterBy("Villa Urquiza", "locacion")
+    }
+    if ($("#filter-location").value === "Palermo") {
+        filterBy("Palermo", "locacion")
+    }
+    if ($("#filter-location").value === "Devoto") {
+        filterBy("Devoto", "locacion")
+    }
+    if ($("#filter-location").value === "Remoto") {
+        filterBy("Remoto", "locacion")
+    }
+    if ($("#filter-type").value === "Part-time") {
+        filterBy("Part-time", "tipo")
+    }
+    if ($("#filter-type").value === "Full time") {
+        filterBy("Full time", "tipo")
+    }
+    if ($("#filter-type").value === "A convenir") {
+        filterBy("A convenir", "tipo")
+    }
+    if ($("#filter-experience").value === "0") {
+        filterBy("Sin experiencia", "experiencia")
+    }
+    if ($("#filter-experience").value === "2") {
+        filterBy("Con experiencia", "experiencia")
+    }
+    if ($("#filter-experience").value === "5") {
+        filterBy("5 años o mas", "experiencia")
+    }
+    return arrDataJobs
+}
 
 //funcionalidad y eventos de modal
 
-//variables
-const addJobModal = $("#add-job-modal")
-const addJob = $("#add-job")
-const saveModalBtn = $("#save-modal-btn")
-const cancelModalBtn = $("#cancel-modal-btn")
 
-
-addJob.addEventListener("click", (e) => {
+$("#add-job").addEventListener("click", (e) => {
     e.preventDefault()
-    addJobModal.classList.remove("hidden")
+    unhideElement($("#add-job-modal"))
+    hideElement($(".modal-form-error"))
 })
 
-cancelModalBtn.addEventListener("click", () => {
-    addJobModal.classList.add("hidden")
+$("#cancel-modal-btn").addEventListener("click", () => {
+    hideElement($("#add-job-modal"))
+})
+
+$("#save-modal-btn").addEventListener("click", () => {
+    if($("#name-add-Job").value !== "" && $("#add-job-descripcion").value !== "" && $("#modal-imagen").value !== ""){
+        AddNewJob()
+    }
+    else {
+        unhideElement($(".modal-form-error"))
+    }
+
 })
 
 $("#btn-delete-job-modal").addEventListener("click", () => {
     const jobId = $("#delete-job-modal").getAttribute("data-id")
     deleteJob(jobId)
-    $("#delete-job-modal").classList.add("hidden")
+    hideElement($("#delete-job-modal"))
 
 })
 
 $("#btn-cancel-job-modal").addEventListener("click", () => {
-    $("#delete-job-modal").classList.add("hidden")
-})
-
-const editJobEvent = () => {
-    console.log("holu")
-}
-
-$("#edit-form").addEventListener("submit", (e) => {
-    e.preventDefault()
-    console.log("holu")
+    hideElement($("#delete-job-modal"))
 })
 
 //no logro que me funcionen con eventos de tipo click ni con submit en el form. raaro.
 const editFormSave = () => {
     const jobId = $("#save-edit-job-btn").getAttribute("data-id")
-    editJob(jobId)
+    if($("#name-edit-Job").value !== "" && $("#edit-description").value !== "" && $("#edit-imagen").value !== ""){
+        editJob(jobId)
+    }
+    else {
+        unhideElement($(".form-edit-error"))
+    }
 }
 
 const editFormCancel = () => {
-    $("#edit-job-form").classList.add("hidden")
-    $("#btn-container-detail").classList.remove("hidden")
+    hideElement($("#edit-job-form"))
+    unhideElement($("#btn-container-detail"))
 }
+
+$("#operation-btn").addEventListener("click", (e) => {
+    e.preventDefault()
+    filterCards()
+    generateCards(arrDataJobs)
+})
 
 
 
