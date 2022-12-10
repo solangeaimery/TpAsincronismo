@@ -73,21 +73,21 @@ const generateCards = (jobs) => {
 
     for (const { id, name, descripcion, imagen, experiencia } of jobs) {
         cardSection.innerHTML += `
-        <div id="card">
-        <div class="flex justify-center">
+        <div id="card" class="h-fit w-min">
+        <div class="flex justify-center ">
             <img src="${imagen}" alt="${name}">
         </div>
         <div>
-            <h3 class="text-lg m-2">${name}</h3>
-            <p class="m-1">${descripcion}</p>
+            <h3 class="text-xl m-2">${name}</h3>
+            <p class="m-1 text-sm">${descripcion}</p>
         </div>
         <div class="m-2">
             <span
-                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">${experiencia}</span>
+                class="inline-block bg-gray-200 text-sm rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">${experiencia}</span>
         </div>
         <div class="flex justify-end items-end m-2">
             <button
-                class="btn-detail bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-id="${id}">
+                class="btn-detail text-sm bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-id="${id}">
                 ver detalles
             </button>
         </div>
@@ -112,7 +112,7 @@ const generateDetailCard = (data) => {
     hideElement($(".spinner"))
     const { id, name, imagen, descripcion, experiencia, tipo, locacion } = data
     $("#card-detail-section").innerHTML += `
-        <div id="card-details" class="shadow-md h-fit mt-9">
+        <div id="card-details" class="shadow-md h-fit w-fit m-7 mt-9 p-4 md:w-1/3">
         <div class="flex justify-center">
             <img src="${imagen}" alt="${name}">
         </div>
@@ -259,6 +259,9 @@ const filterCards = () => {
     }
     if ($("#filter-experience").value === "5") {
         filterBy("5 años o mas", "experiencia")
+    }
+    if (arrDataJobs.length === 0){
+        unhideElement($("#no-reults"))
     }
     return arrDataJobs
 }

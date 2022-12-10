@@ -95,24 +95,24 @@
                 </div>
                 <div>
                     <a href="index.html"
-                        class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
+                        class="mx-5 font-bold text-base hover:text-[#D60004] transition duration-150 hover:ease-in">Home</a>
                     <a id="add-job" href="#"
-                        class="mx-5 font-bold hover:text-[#D60004] transition duration-150 hover:ease-in">Agregar
+                        class="mx-5 font-bold text-base hover:text-[#D60004] transition duration-150 hover:ease-in">Agregar
                         trabajo</a>
                 </div>
             </nav>
-            <div class="text-4xl md:text-6xl box-banner">
-                <p>Queres tabajar en el mundo del tatuaje? <br> Tenemos muchas propuestas para vos
+            <div class=" text-4xl md:text-6xl box-banner">
+                <p>Queres trabajar en el mundo del tatuaje? <br> Tenemos muchas propuestas para vos
                 </p>
             </div>
         </div>
     </header>
-    <section class="pt-2 bg-[#D60004] h-fit p-2" id="form-section">
+    <section class="pt-2 bg-[#D60004] h-fit p-5" id="form-section">
         <form>
             <div class="flex flex-col md:flex-row justify-evenly items-center">
                 <div class="flex flex-col md:flex-row">
                     <div class="flex justify-center flex-col md:justify-center flex-row ">
-                        <label for="filter-type" class="font-bold text-center"> Localidad </label>
+                        <label for="filter-type" class="font-bold text-base text-center"> Localidad </label>
                         <select name="filer-type" id="filter-location" class="w-48 rounded mx-2">
                             <option class="input-value-all" value="All">Localidad</option>
                             <option value="Ramos mejia">Ramos mejia</option>
@@ -125,7 +125,7 @@
                         </select>
                     </div>
                     <div class="flex justify-center flex-col md:justify-center flex-row">
-                        <label for="filter-type" class="font-bold text-center"> Tipo</label>
+                        <label for="filter-type" class="font-bold text-base text-center"> Tipo</label>
                         <select name="filter-type" id="filter-type" class="w-48 rounded mx-2">
                             <option class="input-value-all" value="All">Tipo</option>
                             <option value="Part-time">Part-time</option>
@@ -134,7 +134,7 @@
                         </select>
                     </div>
                     <div class="flex justify-center flex-col md:justify-center flex-row">
-                        <label for="filter-type" class="font-bold text-center"> Experiencia </label>
+                        <label for="filter-type" class="font-bold text-base text-center"> Experiencia </label>
                         <select name="filer-type" id="filter-experience" class="w-48 rounded mx-2">
                             <option class="input-value-all" value="All">Experiencia</option>
                             <option value="0">Sin experiencia</option>
@@ -146,11 +146,11 @@
                 <div class="flex">
                     <button id="operation-btn"
                         class="mx-1 self-start lg:self-end text-white bg-[#1B1A17] rounded-md p-3 mt-3 lg:mt-0 hover:bg-[#6F6F6F] transition duration-150 hover:ease-in">
-                        search
+                        Buscar
                     </button>
                     <button id="operation-btn"
                         class="mx-3 self-start lg:self-end text-white bg-[#1B1A17] rounded-md p-3 mt-3 lg:mt-0 hover:bg-[#6F6F6F] transition duration-150 hover:ease-in">
-                        clean
+                        Limpiar
                     </button>
                 </div>
             </div>
@@ -165,11 +165,14 @@
         <div id="cards-section" class="flex justify-around flex-wrap pt-10">
             <!-- cards js -->
         </div>
+        <div class="hidden w-fit h-fit text-3xl text-red-800 " id="no-reults">
+            <span>No se encontraron resultados</span>
+        </div>
     </section>
     <section id="card-detail-section"
-        class="hidden flex justify-center items-center h-screen w-full min-h-screen max-w-full pt-5">
+        class="hidden flex flex-col h-screen w-screen pt-20 md:flex-row justify-center items-center">
         <!-- card js -->
-        <div id="edit-job-form" class="hidden h-fit mt-9 bg-white w-10/12 md:w-1/2 rounded-md m-5 p-8">
+        <div id="edit-job-form" class="hidden shadow-md h-fit bg-white w-10/12 md:w-1/2 mt-96 md:mt-9 rounded-md p-8 ">
             <h2 class="text-3xl text-stone-800 font-bold"> Editar trabajo </h2>
             <form id="edit-form">
                 <div class="flex flex-col">
