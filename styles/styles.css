@@ -49,16 +49,14 @@ nav{
 }
 
 #card-detail-section{
+    padding-top: 100px;
     background-image:url(../assets/inspiracion.1.jpeg);    
 }
 #card{
     z-index: 1;
-    min-height:460px;
     min-width: 260px;
-    padding: 5px;
+    padding: 10px;
     margin: 10px;
-    width: 260px;
-    height: 460px;
     background-color: #FFFFFF;
     border-radius: 10px;
     font-size: 11px;
@@ -68,21 +66,18 @@ nav{
 }
 
 #card img{
-    height: 200px;
+    height: 210px;
 }
 
 #card-details {
     z-index: 1;
-    min-height:500px;
-    min-width: 400px;
     padding: 5px;
-    width: 400px;
     background-color: #FFFFFF;
     border-radius: 10px;
     font-size: 11px;
 }
 #card-details img{
-    height: 280px;
+    height: 280px;;
 }
 
 .spinner {
