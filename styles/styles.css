@@ -43,6 +43,10 @@ nav{
     ;
 }
 
+#no-reults{
+    color: aliceblue;
+}
+
 #cards-section-container {
     z-index: 1;
     background-image:url(../assets/inspiracion.1.jpeg);    
@@ -122,4 +126,14 @@ nav{
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
     }
+}
+.made-lasolci{
+    font-family: julietta-messie;
+    font-size: 25px;
+    color: #000000;
+}
+
+@font-face {
+    font-family: julietta-messie;
+    src: url(../assets/fonts/Julietta-Messie.otf);
 }
