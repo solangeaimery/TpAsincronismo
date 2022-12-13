@@ -221,6 +221,7 @@ const inputsValueAll = () => {
 const filterCards = () => {
     getJobs(false)
     inputsValueAll()
+    hideElement($("#no-reults"))
     if ($("#filter-location").value === "Ramos mejia") {
         filterBy("Ramos mejia", "locacion")
     }
