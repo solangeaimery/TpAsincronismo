@@ -43,10 +43,6 @@ nav{
     ;
 }
 
-#no-reults{
-    color: aliceblue;
-}
-
 #cards-section-container {
     z-index: 1;
     background-image:url(../assets/inspiracion.1.jpeg);    
@@ -75,7 +71,7 @@ nav{
 
 #card-details {
     z-index: 1;
-    padding: 5px;
+    padding: 25px;
     background-color: #FFFFFF;
     border-radius: 10px;
     font-size: 11px;
