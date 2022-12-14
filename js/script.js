@@ -34,7 +34,7 @@ const getJob = (id) => {
         .then(data => {
             setTimeout(() => {
                 generateDetailCard(data)
-            },2000)
+            }, 2000)
         })
 }
 
@@ -71,7 +71,7 @@ const generateCards = (jobs) => {
     hideElement($("#card-detail-section"))
     hideElement($(".spinner"))
 
-    for (const { id, name, descripcion, imagen, experiencia } of jobs) {
+    for (const { id, name, descripcionCorta, imagen } of jobs) {
         cardSection.innerHTML += `
         <div id="card" class="h-fit w-min">
         <div class="flex justify-center ">
@@ -79,11 +79,7 @@ const generateCards = (jobs) => {
         </div>
         <div>
             <h3 class="text-xl m-2">${name}</h3>
-            <p class="m-1 text-sm">${descripcion}</p>
-        </div>
-        <div class="m-2">
-            <span
-                class="inline-block bg-gray-200 text-sm rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">${experiencia}</span>
+            <p class="m-1 text-sm">${descripcionCorta}</p>
         </div>
         <div class="flex justify-end items-end m-2">
             <button
@@ -112,17 +108,17 @@ const generateDetailCard = (data) => {
     hideElement($(".spinner"))
     const { id, name, imagen, descripcion, experiencia, tipo, locacion } = data
     $("#card-detail-section").innerHTML += `
-        <div id="card-details" class="shadow-md h-fit w-fit m-7 mt-9 p-4 md:w-1/3">
+        <div id="card-details" class="shadow-md h-fit w-fit m-7 p-4 md:w-1/3">
         <div class="flex justify-center">
             <img src="${imagen}" alt="${name}">
         </div>
         <div>
             <h3 class="text-xl m-2">${name}</h3>
-            <p class="m-1">${descripcion}</p>
+            <p class="m-1 text-sm">${descripcion}</p>
         </div>
         <div class="m-2">
             <span
-                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">${experiencia}</span>
+                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 m-4">${experiencia}</span>
         </div>
         <div class="m-2">
                 <span
@@ -133,11 +129,11 @@ const generateDetailCard = (data) => {
         </div>
         <div id="btn-container-detail" class="flex justify-end items-end m-2">
             <button
-                class="btn-edit-job bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-id="${id}">
+                class="btn-edit-job bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow text-sm" data-id="${id}">
                 Editar trabajo
             </button>
             <button
-                class="btn-delete-job bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow" data-id="${id}">
+                class="btn-delete-job bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-red-600 mx-1 rounded shadow text-sm" data-id="${id}">
                 Eliminar trabajo
             </button>
         </div>
@@ -149,7 +145,6 @@ const generateDetailCard = (data) => {
     $("#edit-imagen").value = imagen
     $("#experiencia-edit").value = experiencia
     $("#tipe-edit").value = tipo
-
     $("#save-edit-job-btn").setAttribute("data-id", id)
 
 
@@ -173,22 +168,26 @@ const generateDetailCard = (data) => {
 }
 
 const saveJob = () => {
-        return {
-            name: $("#name-edit-Job").value,
-            descripcion: $("#edit-description").value,
-            imagen: $("#edit-imagen").value,
-            experiencia: $("#experiencia-edit").value,
-            tipo: $("#tipe-edit").value,
-        }
+    return {
+        name: $("#name-edit-Job").value,
+        descripcion: $("#edit-description").value,
+        descripcionCorta: $("#edit-job-descripcion-short").value,
+        imagen: $("#edit-imagen").value,
+        experiencia: $("#experiencia-edit").value,
+        tipo: $("#tipe-edit").value,
+        locacion: $("#edit-location").value
+    }
 }
 
 const saveNewJob = () => {
     return {
         name: $("#name-add-Job").value,
         descripcion: $("#add-job-descripcion").value,
+        descripcionCorta: $("#add-job-descripcion-short").value,
         imagen: $("#modal-imagen").value,
         experiencia: $("#experiencia-modal").value,
         tipo: $("#tipo-modal").value,
+        locacion: $("#location-modal").value,
     }
 }
 
@@ -206,10 +205,6 @@ const filterBy = (filter, property) => {
     return arrDataJobs = newArrFilter
 }
 
-// const locationInput = $("#filter-location").value
-// const experienceInput = $("#filter-experience").value
-// const typeInput = $("#filter-type").value // NO ANDA CON ESTAS VARIABLES :c ver... 
-
 const inputsValueAll = () => {
     for (const input of $$(".input-value-all")) {
         if (input.value === "All") {
@@ -222,49 +217,20 @@ const filterCards = () => {
     getJobs(false)
     inputsValueAll()
     hideElement($("#no-reults"))
-    if ($("#filter-location").value === "Ramos mejia") {
-        filterBy("Ramos mejia", "locacion")
+    if ($("#filter-location").value !== "All") {
+        filterBy($("#filter-location").value, "locacion")
     }
-    if ($("#filter-location").value === "Liniers") {
-        filterBy("Liniers", "locacion")
+    if ($("#filter-type").value !== "All") {
+        filterBy($("#filter-type").value, "tipo")
     }
-    if ($("#filter-location").value === "Belgrano") {
-        filterBy("Belgrano", "locacion")
+    if ($("#filter-experience").value !== "All") {
+        filterBy($("#filter-experience").value, "experiencia")
     }
-    if ($("#filter-location").value === "Villa Urquiza") {
-        filterBy("Villa Urquiza", "locacion")
-    }
-    if ($("#filter-location").value === "Palermo") {
-        filterBy("Palermo", "locacion")
-    }
-    if ($("#filter-location").value === "Devoto") {
-        filterBy("Devoto", "locacion")
-    }
-    if ($("#filter-location").value === "Remoto") {
-        filterBy("Remoto", "locacion")
-    }
-    if ($("#filter-type").value === "Part-time") {
-        filterBy("Part-time", "tipo")
-    }
-    if ($("#filter-type").value === "Full time") {
-        filterBy("Full time", "tipo")
-    }
-    if ($("#filter-type").value === "A convenir") {
-        filterBy("A convenir", "tipo")
-    }
-    if ($("#filter-experience").value === "0") {
-        filterBy("Sin experiencia", "experiencia")
-    }
-    if ($("#filter-experience").value === "2") {
-        filterBy("Con experiencia", "experiencia")
-    }
-    if ($("#filter-experience").value === "5") {
-        filterBy("5 años o mas", "experiencia")
-    }
-    if (arrDataJobs.length === 0){
+    if (arrDataJobs.length === 0) {
         unhideElement($("#no-reults"))
     }
     return arrDataJobs
+
 }
 
 //funcionalidad y eventos de modal
@@ -281,7 +247,7 @@ $("#cancel-modal-btn").addEventListener("click", () => {
 })
 
 $("#save-modal-btn").addEventListener("click", () => {
-    if($("#name-add-Job").value !== "" && $("#add-job-descripcion").value !== "" && $("#modal-imagen").value !== ""){
+    if ($("#name-add-Job").value !== "" && $("#add-job-descripcion").value !== "" && $("#modal-imagen").value !== "") {
         AddNewJob()
     }
     else {
@@ -301,10 +267,9 @@ $("#btn-cancel-job-modal").addEventListener("click", () => {
     hideElement($("#delete-job-modal"))
 })
 
-//no logro que me funcionen con eventos de tipo click ni con submit en el form. raaro.
 const editFormSave = () => {
     const jobId = $("#save-edit-job-btn").getAttribute("data-id")
-    if($("#name-edit-Job").value !== "" && $("#edit-description").value !== "" && $("#edit-imagen").value !== ""){
+    if ($("#name-edit-Job").value !== "" && $("#edit-description").value !== "" && $("#edit-imagen").value !== "") {
         editJob(jobId)
     }
     else {

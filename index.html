@@ -30,7 +30,12 @@
                     <input name="name-add-Job" id="name-add-Job" class="border-2" type="text" maxlength="30">
                 </div>
                 <div class="flex flex-col">
-                    <label for="modal-descripcion" class="font-bold mt-2"> descripcion</label>
+                    <label for="modal-descripcion" class="font-bold mt-2"> descripcion corta</label>
+                    <textarea name="add-job-descripcion" id="add-job-descripcion-short" cols="20" rows="1" maxlength="100"
+                        class="border-2"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="modal-descripcion" class="font-bold mt-2"> descripcion detallada del trabajo</label>
                     <textarea name="add-job-descripcion" id="add-job-descripcion" cols="20" rows="2" maxlength="250"
                         class="border-2"></textarea>
                 </div>
@@ -52,6 +57,18 @@
                         <option value="income"> Full-time </option>
                         <option value="outcome"> Part-time </option>
                         <option value="outcome"> A convenir </option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="location-modal" class="font-bold mt-2"> Localidad </label>
+                    <select name="location-modal" id="location-modal" class="border-2">
+                        <option value="Ramos mejia">Ramos mejia</option>
+                        <option value="Liniers">Liniers</option>
+                        <option value="Belgrano">Belgrano</option>
+                        <option value="Villa Urquiza">Villa Urquiza</option>
+                        <option value="Palermo">Palermo</option>
+                        <option value="Devoto">Devoto</option>
+                        <option value="Remoto">Remoto</option>
                     </select>
                 </div>
             </form>
@@ -102,7 +119,7 @@
                 </div>
             </nav>
             <div class=" text-4xl md:text-6xl box-banner">
-                <p>Queres trabajar en el mundo del tatuaje? <br> Tenemos muchas propuestas para vos
+                <p>Queres trabajar en el mundo del tatuaje? <br> Te estamos buscando
                 </p>
             </div>
         </div>
@@ -165,14 +182,14 @@
         <div id="cards-section" class="flex h-fit justify-around flex-wrap pt-10">
             <!-- cards js -->
         </div>
-        <div class="hidden flex justify-center items-center m-10 shadow-md w-fit h-fit text-2xl bg-black w-fit h-32 p-4 rounded-2xl" id="no-reults">
+        <div class="hidden flex justify-center items-center m-10 shadow-md w-fit h-fit text-2xl bg-black w-fit h-32 p-4 rounded-2xl text-white" id="no-reults">
             <span>No hay resultados para su búsqueda</span>
         </div>
     </section>
     <section id="card-detail-section"
         class="hidden flex flex-col h-fit md:h-full h-screen md:flex-row justify-center items-center">
         <!-- card js -->
-        <div id="edit-job-form" class="hidden shadow-md h-fit bg-white w-10/12 md:w-1/2 rounded-md p-8 ">
+        <div id="edit-job-form" class="hidden shadow-md h-fit bg-white w-10/12 md:w-1/2 rounded-md p-8 m-7">
             <h2 class="text-3xl text-stone-800 font-bold"> Editar trabajo </h2>
             <form id="edit-form">
                 <div class="flex flex-col">
@@ -180,8 +197,13 @@
                     <input name="name-edit-Job" id="name-edit-Job" class="border-2" type="text" maxlength="30">
                 </div>
                 <div class="flex flex-col">
+                    <label for="modal-descripcion" class="font-bold mt-2"> descripcion corta</label>
+                    <textarea name="add-job-descripcion" id="edit-job-descripcion-short" cols="20" rows="1" maxlength="100"
+                        class="border-2"></textarea>
+                </div>
+                <div class="flex flex-col">
                     <label for="edit-description" class="font-bold mt-2"> descripcion</label>
-                    <textarea name="edit-description" id="edit-description" cols="20" rows="2" maxlength="250"
+                    <textarea name="edit-description" id="edit-description" cols="20" rows="2" maxlength="400"
                         class="border-2"></textarea>
                 </div>
                 <div class="flex flex-col">
@@ -202,6 +224,18 @@
                         <option value="Full time"> Full-time </option>
                         <option value="Part-time"> Part-time </option>
                         <option value="A convenir"> A convenir </option>
+                    </select>
+                </div>
+                <div class="flex flex-col ">
+                    <label for="edit-location" class="font-bold mt-2"> Localidad </label>
+                    <select name="edit-location" id="edit-location" class="border-2">
+                        <option value="Ramos mejia">Ramos mejia</option>
+                        <option value="Liniers">Liniers</option>
+                        <option value="Belgrano">Belgrano</option>
+                        <option value="Villa Urquiza">Villa Urquiza</option>
+                        <option value="Palermo">Palermo</option>
+                        <option value="Devoto">Devoto</option>
+                        <option value="Remoto">Remoto</option>
                     </select>
                 </div>
             </form>
