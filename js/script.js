@@ -106,7 +106,7 @@ const generateCards = (jobs) => {
 
 const generateDetailCard = (data) => {
     hideElement($(".spinner"))
-    const { id, name, imagen, descripcion, experiencia, tipo, locacion } = data
+    const { id, name, imagen, descripcion,descripcionCorta, experiencia, tipo, locacion } = data
     $("#card-detail-section").innerHTML += `
         <div id="card-details" class="shadow-md h-fit w-fit m-7 p-4 md:w-1/3">
         <div class="flex justify-center">
@@ -145,6 +145,8 @@ const generateDetailCard = (data) => {
     $("#edit-imagen").value = imagen
     $("#experiencia-edit").value = experiencia
     $("#tipe-edit").value = tipo
+    $("#edit-job-descripcion-short").value = descripcionCorta
+    $("#edit-location").value = locacion
     $("#save-edit-job-btn").setAttribute("data-id", id)
 
 
@@ -269,7 +271,7 @@ $("#btn-cancel-job-modal").addEventListener("click", () => {
 
 const editFormSave = () => {
     const jobId = $("#save-edit-job-btn").getAttribute("data-id")
-    if ($("#name-edit-Job").value !== "" && $("#edit-description").value !== "" && $("#edit-imagen").value !== "") {
+    if ($("#name-edit-Job").value !== "" && $("#edit-description").value !== "" && $("#edit-imagen").value !== "" && $("#edit-job-descripcion-short").value !== "" ) {
         editJob(jobId)
     }
     else {
