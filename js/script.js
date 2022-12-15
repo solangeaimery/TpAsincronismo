@@ -284,7 +284,7 @@ const editFormCancel = () => {
     unhideElement($("#btn-container-detail"))
 }
 
-$("#operation-btn").addEventListener("click", (e) => {
+$("#search-btn").addEventListener("click", (e) => {
     e.preventDefault()
     filterCards()
     generateCards(arrDataJobs)
